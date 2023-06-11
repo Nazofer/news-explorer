@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const useFetch = (endpoint, query) => {
   const [data, setData] = useState([]);
@@ -7,12 +7,11 @@ const useFetch = (endpoint, query) => {
   const [error, setError] = useState(null);
 
   const options = {
-    method: "GET",
+    method: 'GET',
     url: `https://newsapi.org/v2/${endpoint}`,
     params: {
       ...query,
-      pageSize: 10, // Set the number of results per page or chunk
-      page: 1, // Set the initial page or chunk to fetch
+      apiKey: '92dc3b19a99f441289468d6a8aee3fad',
     },
   };
 
@@ -21,12 +20,12 @@ const useFetch = (endpoint, query) => {
 
     try {
       const response = await axios.request(options);
-      console.log(response.data);
+      // console.log(response.data);
       setData(response.data?.articles);
       setIsLoading(false);
     } catch (error) {
       setError(error);
-      console.log(error)
+      console.log(error);
     } finally {
       setIsLoading(false);
     }

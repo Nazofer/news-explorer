@@ -1,7 +1,7 @@
 import { View, ScrollView, SafeAreaView } from 'react-native';
 import { Stack } from 'expo-router';
 import { COLORS, icons, SIZES } from '../constants';
-import { Welcome, ScreenHeaderBtn, PopularNews } from '../components';
+import { Welcome, ScreenHeaderBtn, PopularNews, RecentNews } from '../components';
 
 const Home = () => {
   return (
@@ -20,6 +20,7 @@ const Home = () => {
         <View style={{ flex: 1, padding: SIZES.medium }}>
           <Welcome />
           <PopularNews />
+          <RecentNews />
         </View>
       </ScrollView>
     </SafeAreaView>

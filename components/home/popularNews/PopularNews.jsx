@@ -9,15 +9,14 @@ import {
 
 import styles from './popularnews.style';
 import { COLORS, SIZES } from '../../../constants';
-import PopularNewsCard from '../../common/cards/popularNewsCard/popularNewsCard';
+import PopularNewsCard from '../../common/cards/popularNewsCard/PopularNewsCard';
 import useFetch from '../../../hook/useFetch';
 
 const PopularNews = () => {
   const { data, isLoading, error } = useFetch("everything", {
     q: "news",
     sortBy: "popularity",
-    apiKey: '92dc3b19a99f441289468d6a8aee3fad',
-    // pageSize: 10,
+    pageSize: 10,
   });
 
   return (
