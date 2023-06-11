@@ -33,6 +33,7 @@ const RecentNews = () => {
             <RecentNewsCard
               item={item}
               key={Math.random().toString(36).substring(2, 9)}
+              handleNavigate={() => router.push({pathname: `/news-details/${item.title}`, item: { item }})}
             />
           ))
         )}

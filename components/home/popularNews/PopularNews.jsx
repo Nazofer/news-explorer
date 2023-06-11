@@ -6,18 +6,22 @@ import {
   ActivityIndicator,
   ScrollView,
 } from 'react-native';
-
+import { useRouter } from 'expo-router';
 import styles from './popularnews.style';
 import { COLORS, SIZES } from '../../../constants';
 import PopularNewsCard from '../../common/cards/popularNewsCard/PopularNewsCard';
 import useFetch from '../../../hook/useFetch';
+import { useState } from 'react';
 
 const PopularNews = () => {
-  const { data, isLoading, error } = useFetch("everything", {
-    q: "news",
-    sortBy: "popularity",
+  const router = useRouter();
+  const { data, isLoading, error } = useFetch('everything', {
+    q: 'news',
+    sortBy: 'popularity',
     pageSize: 10,
   });
+
+  const [selectedNews, setSelectedNews] = useState();
 
   return (
     <ScrollView style={styles.container}>
@@ -37,6 +41,10 @@ const PopularNews = () => {
             data={data}
             renderItem={({ item }) => (
               <PopularNewsCard
+                handleNavigate={() =>  router.push({
+                  pathname: `/news-details/${item.source.name}`, // or whatever your details route is
+                  params: { item: item }, // Pass the data as a parameter
+                })}
                 item={item}
               />
             )}

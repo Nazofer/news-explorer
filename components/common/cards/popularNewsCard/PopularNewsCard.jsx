@@ -5,10 +5,12 @@ import styles from './popularnewscard.style';
 import { Dimensions } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
-const PopularNewsCard = ({ item }) => {
+const PopularNewsCard = ({ item, handleNavigate }) => {
+  // console.log(item.id);
   return (
     <TouchableOpacity
       style={styles.container(screenWidth)}
+      onPress={handleNavigate}
     >
       <Text style={styles.title} >
         {item.title}
