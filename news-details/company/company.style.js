@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { COLORS, FONT, SIZES } from "../../../constants";
+import { COLORS, FONT, SIZES } from '../../constants'
 
 const styles = StyleSheet.create({
   container: {
@@ -9,21 +9,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoBox: {
-    width: 80,
-    height: 80,
+    width: '80%',
+    height: 250,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#FFF",
-    borderRadius: SIZES.large,
+    // backgroundColor: "#FFF",
+    // borderRadius: SIZES.large,
   },
   logoImage: {
-    width: "80%",
-    height: "80%",
+    width: "100%",
+    height: '100%',
   },
   jobTitleBox: {
     marginTop: SIZES.small,
   },
-  jobTitle: {
+  title: {
     fontSize: SIZES.large,
     color: COLORS.primary,
     fontFamily: FONT.bold,

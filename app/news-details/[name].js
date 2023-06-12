@@ -5,37 +5,21 @@ import {
   useSearchParams,
 } from 'expo-router';
 import { useCallback, useState } from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  ActivityIndicator,
-  RefreshControl,
-} from 'react-native';
+import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 
-import {
-  Company,
-  JobAbout,
-  JobFooter,
-  JobTabs,
-  ScreenHeaderBtn,
-  Specifics,
-} from '../../components';
+import Company from '../../news-details/company/Company';
+import { ScreenHeaderBtn } from '../../components';
 import { COLORS, icons, SIZES } from '../../constants';
-import useFetch from '../../hook/useFetch';
-
-const tabs = ['About', 'Qualifications'];
+import { useSelector } from 'react-redux';
+import Footer from '../../news-details/footer/Footer';
+import About from '../../news-details/about/About';
 
 const NewsDetails = () => {
   const router = useRouter();
-  // const params = useLocalSearchParams();
-  // const {item} = useSearchParams()
-  // const { item } = route.params;
   const params = useLocalSearchParams();
   const { name } = params;
-
-  console.log(name);
+  const newsItem = useSelector((state) => state.news.newsItem);
+  // console.log(newsItem.content);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -60,19 +44,24 @@ const NewsDetails = () => {
 
       <>
         <ScrollView showsVerticalScrollIndicator={false}>
-          {name ? (
-            <Text>{name}</Text>
+          {!newsItem ? (
+            <Text>Something went wrong!</Text>
           ) : (
-            <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
-              <Company
-                companyLogo={item.urlToImage}
-                jobTitle={item.title}
-                companyName={item.source.name}
-                location={item.source.author}
-              />
-            </View>
+            <>
+              <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
+                <Company
+                  image={newsItem.urlToImage}
+                  title={newsItem.title}
+                  name={newsItem.source.name}
+                  author={newsItem.author}
+                />
+              <About info={newsItem.content}/>
+              </View>
+            </>
           )}
         </ScrollView>
+
+        <Footer url={newsItem.url} />
       </>
     </SafeAreaView>
   );

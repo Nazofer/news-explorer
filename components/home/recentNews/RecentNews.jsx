@@ -5,6 +5,8 @@ import styles from './recentnews.style';
 import { COLORS } from '../../../constants';
 import RecentNewsCard from '../../common/cards/nearby/RecentNewsCard';
 import useFetch from '../../../hook/useFetch';
+import { useDispatch } from 'react-redux';
+import { addNewsItem } from '../../../store/store';
 
 const RecentNews = () => {
   const router = useRouter();
@@ -13,7 +15,7 @@ const RecentNews = () => {
     sortBy: 'publishedAt',
     pageSize: 10,
   });
-
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -33,7 +35,12 @@ const RecentNews = () => {
             <RecentNewsCard
               item={item}
               key={Math.random().toString(36).substring(2, 9)}
-              handleNavigate={() => router.push({pathname: `/news-details/${item.title}`, item: { item }})}
+              handleNavigate={() => {
+                router.push({
+                  pathname: `/news-details/${item.source.name}`,
+                });
+                dispatch(addNewsItem(item));
+              }}
             />
           ))
         )}

@@ -12,6 +12,8 @@ import { COLORS, SIZES } from '../../../constants';
 import PopularNewsCard from '../../common/cards/popularNewsCard/PopularNewsCard';
 import useFetch from '../../../hook/useFetch';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addNewsItem } from '../../../store/store';
 
 const PopularNews = () => {
   const router = useRouter();
@@ -22,7 +24,8 @@ const PopularNews = () => {
   });
 
   const [selectedNews, setSelectedNews] = useState();
-
+  const dispatch = useDispatch();
+  // const  = useSelector((state) => state.news.newsItem);
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -41,10 +44,11 @@ const PopularNews = () => {
             data={data}
             renderItem={({ item }) => (
               <PopularNewsCard
-                handleNavigate={() =>  router.push({
-                  pathname: `/news-details/${item.source.name}`, // or whatever your details route is
-                  params: { item: item }, // Pass the data as a parameter
-                })}
+                handleNavigate={() =>  {router.push({
+                  pathname: `/news-details/${item.source.name}`,
+                })
+                dispatch(addNewsItem(item));
+              }}
                 item={item}
               />
             )}
