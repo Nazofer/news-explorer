@@ -23,7 +23,7 @@ const SearchNews = () => {
   const [searchLoader, setSearchLoader] = useState(false);
   const [searchError, setSearchError] = useState(null);
   const [page, setPage] = useState(1);
-  
+
   const fetchData = async () => {
     setSearchLoader(true);
     setSearchResult([]);
@@ -32,7 +32,7 @@ const SearchNews = () => {
       url: `https://newsapi.org/v2/everything`,
       params: {
         q: query,
-        apiKey: '92dc3b19a99f441289468d6a8aee3fad',
+        apiKey: '41d51bbaa8624af6ae5523dfdff0c6fa',
         sortBy: 'publishedAt',
         page: page.toString(),
         pageSize: 10,
