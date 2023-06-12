@@ -12,6 +12,7 @@ const useFetch = (endpoint, query) => {
     params: {
       ...query,
       apiKey: '92dc3b19a99f441289468d6a8aee3fad',
+      language: 'en',
     },
   };
 

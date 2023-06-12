@@ -8,14 +8,14 @@ const Company = ({ image, title, name, author }) => {
   console.log(image, title, author, name);
   return (
     <View style={styles.container}>
-      <View style={styles.logoBox}>
+      {image && <View style={styles.logoBox}>
         <Image
           source={{
             uri: image
           }}
           style={styles.logoImage}
         />
-      </View>
+      </View>}
 
       <View style={styles.titleBox}>
         <Text style={styles.title}>{title}</Text>

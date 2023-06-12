@@ -37,6 +37,7 @@ const SearchNews = () => {
         sortBy: 'publishedAt',
         page: page.toString(),
         pageSize: 10,
+        language: 'en',
       },
     };
 
