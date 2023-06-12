@@ -61,7 +61,7 @@ const NewsDetails = () => {
           )}
         </ScrollView>
 
-        <Footer url={newsItem.url} />
+        <Footer url={newsItem?.url} />
       </>
     </SafeAreaView>
   );

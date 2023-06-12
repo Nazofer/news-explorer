@@ -1,6 +1,6 @@
-import { View, Text, TouchableOpacity, Image, Linking } from "react-native";
+import { View, Text, TouchableOpacity, Image, Linking } from 'react-native';
 
-import styles from "./footer.style";
+import styles from './footer.style';
 import { icons } from '../../constants';
 
 const Footer = ({ url }) => {
@@ -16,7 +16,10 @@ const Footer = ({ url }) => {
 
       <TouchableOpacity
         style={styles.applyBtn}
-        onPress={() => Linking.openURL(url)}
+        onPress={() => {
+          if (!url) return;
+          Linking.openURL(url);
+        }}
       >
         <Text style={styles.applyBtnText}>Open in browser</Text>
       </TouchableOpacity>
