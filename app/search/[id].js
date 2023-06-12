@@ -23,8 +23,7 @@ const SearchNews = () => {
   const [searchLoader, setSearchLoader] = useState(false);
   const [searchError, setSearchError] = useState(null);
   const [page, setPage] = useState(1);
-  console.log(params.id, typeof params.id);
-
+  
   const fetchData = async () => {
     setSearchLoader(true);
     setSearchResult([]);

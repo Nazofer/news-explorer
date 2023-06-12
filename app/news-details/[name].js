@@ -19,7 +19,6 @@ const NewsDetails = () => {
   const params = useLocalSearchParams();
   const { name } = params;
   const newsItem = useSelector((state) => state.news.newsItem);
-  // console.log(newsItem.content);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
