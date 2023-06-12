@@ -14,10 +14,14 @@ import { ScreenHeaderBtn, NearbyJobCard } from '../../components';
 import { COLORS, icons, SIZES } from '../../constants';
 import styles from './search.style';
 import PopularNewsCard from '../../components/common/cards/popularNewsCard/PopularNewsCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { addNewsItem } from '../../store/store';
 
 const SearchNews = () => {
   const params = useSearchParams();
   const router = useRouter();
+  const dispatch = useDispatch();
+  const startDate = useSelector((state) => state.search.date);
   const query = params.id;
   const [searchResult, setSearchResult] = useState([]);
   const [searchLoader, setSearchLoader] = useState(false);
@@ -33,12 +37,15 @@ const SearchNews = () => {
       params: {
         q: query,
         apiKey: '41d51bbaa8624af6ae5523dfdff0c6fa',
-        sortBy: 'publishedAt',
         page: page.toString(),
         pageSize: 10,
         language: 'en',
       },
     };
+
+    if (startDate) {
+      options.params.from = startDate;
+    }
 
     try {
       const response = await axios.request(options);
@@ -54,7 +61,6 @@ const SearchNews = () => {
   useEffect(() => {
     if (query) {
       fetchData();
-      console.log(searchResult);
     }
   }, [query]);
 
@@ -90,8 +96,10 @@ const SearchNews = () => {
         renderItem={({ item }) => (
           <PopularNewsCard
             item={item}
-            handleNavigate={() =>
+            handleNavigate={() =>{
               router.push(`/news-details/${item.source.name}`)
+              dispatch(addNewsItem(item))
+            }
             }
           />
         )}

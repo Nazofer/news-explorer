@@ -3,7 +3,7 @@ import { useRouter } from 'expo-router';
 
 import styles from './recentnews.style';
 import { COLORS } from '../../../constants';
-import RecentNewsCard from '../../common/cards/nearby/RecentNewsCard';
+import RecentNewsCard from '../../common/cards/recentNewsCard/RecentNewsCard';
 import useFetch from '../../../hook/useFetch';
 import { useDispatch } from 'react-redux';
 import { addNewsItem } from '../../../store/store';

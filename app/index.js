@@ -8,11 +8,15 @@ import {
   RecentNews,
 } from '../components';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setSearchDate } from '../store/store';
 
 const Home = () => {
   const router = useRouter('');
   const [searchTerm, setSearchTerm] = useState('');
-  const [startDate, setStartDate] = useState('');
+  const [startDate, setStartDate] = useState(null);
+  const dispatch = useDispatch();
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
       <Stack.Screen
@@ -35,7 +39,11 @@ const Home = () => {
             setSearchTerm={setSearchTerm}
             handleClick={() => {
               if (searchTerm) {
-                router.push(`/search/${searchTerm}`, {});
+                if (startDate) {
+                  dispatch(setSearchDate(startDate.toISOString()));
+                  setStartDate(null);
+                }
+                router.push(`/search/${searchTerm}`);
                 setSearchTerm('');
               }
             }}

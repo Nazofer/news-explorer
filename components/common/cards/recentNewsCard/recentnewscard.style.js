@@ -18,12 +18,12 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: SIZES.medium,
   },
-  jobName: {
+  title: {
     fontSize: SIZES.medium,
     fontFamily: "DMBold",
     color: COLORS.primary,
   },
-  jobType: {
+  description: {
     fontSize: SIZES.small + 2,
     fontFamily: "DMRegular",
     color: COLORS.gray,

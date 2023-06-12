@@ -5,7 +5,6 @@ import styles from "./company.style";
 import { icons } from '../../constants';
 
 const Company = ({ image, title, name, author }) => {
-  console.log(image, title, author, name);
   return (
     <View style={styles.container}>
       {image && <View style={styles.logoBox}>

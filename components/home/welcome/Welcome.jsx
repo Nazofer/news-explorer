@@ -20,9 +20,9 @@ const Welcome = ({
   setStartDate,
 }) => {
   const [isCalendarOpened, setIsCalendarOpened] = useState(false);
+
   const handleDateChange = (event, date) => {
     setStartDate(date);
-
     if (event.type === 'dismissed' || event.type === 'set')
       setIsCalendarOpened(false);
   };
